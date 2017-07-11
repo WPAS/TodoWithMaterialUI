@@ -12,8 +12,14 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    const todos = JSON.parse(localStorage.getItem('todo'));
-    this.setState({todos});
+    let savedTodos = []
+    //checking length >2 because data will be as string, so empty array is "[]"
+    if (localStorage.todo && localStorage.todo.length > 2) {
+      savedTodos = JSON.parse(localStorage.getItem('todo'));
+    } else {
+      savedTodos = [{id: 1, text: "Add first task using form below", deadline: "And write when it should be finished"}]
+    }
+    this.setState({todos:savedTodos});
   }
 
   handleAdd(todo) {
