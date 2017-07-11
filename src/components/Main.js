@@ -17,7 +17,7 @@ class Main extends Component {
     if (localStorage.todo && localStorage.todo.length > 2) {
       savedTodos = JSON.parse(localStorage.getItem('todo'));
     } else {
-      savedTodos = [{id: 1, text: "Add first task using form below", deadline: "And write when it should be finished"}]
+      savedTodos = [{id: 1, text: "Add first task using the form below", deadline: "And write when it should be finished", important: ""}]
     }
     this.setState({todos:savedTodos});
   }
@@ -30,7 +30,8 @@ class Main extends Component {
           {
             id: Date.now(),
             text: todo.text,
-            deadline: todo.deadline
+            deadline: todo.deadline,
+            important: todo.important,
           }
         ]
       }

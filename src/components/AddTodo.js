@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import Checkbox from 'material-ui/Checkbox';
 
 class AddTodo extends Component {
 
@@ -10,10 +11,11 @@ class AddTodo extends Component {
     this.state = {
       text: '',
       deadline: '',
+      important: '',
     };
   }
 
-  handleChange = (event) => {
+  handleChange = event => {
     if (event.target.id === "text") {
       this.setState({
         text: event.target.value,
@@ -25,11 +27,17 @@ class AddTodo extends Component {
     }
   };
 
+  handleCheck() {
+    const status = this.state.important ? '' : "!!!";
+    this.setState({important: status});
+  }
+
   handleSubmit() {
     this.props.handleAdd(this.state);
     this.setState({
       text: '',
       deadline: '',
+      important: '',
     })
   }
 
@@ -50,6 +58,7 @@ class AddTodo extends Component {
           hintText="When it should be finished?"
           floatingLabelText="Deadline"
           /><br />
+        <Checkbox label="This is important task" checked={this.state.important ? true : false} onCheck={this.handleCheck.bind(this)} />
         <FlatButton label="Add new task" primary={true} onTouchTap={this.handleSubmit.bind(this)} />
       </form>
     )

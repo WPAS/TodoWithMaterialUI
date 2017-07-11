@@ -41,7 +41,7 @@ class TodosList extends Component {
             <ListItem
               key={todo.id}
               leftCheckbox={<Checkbox value={todo.id} onCheck={this.handleCheck.bind(this)}/>}
-              primaryText={todo.text}
+              primaryText={`${todo.important} ${todo.text}`}
               secondaryText={todo.deadline}
             />
           ))}
