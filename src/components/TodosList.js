@@ -34,6 +34,13 @@ class TodosList extends Component {
   }
 
   render() {
+    const primary = (todo) => (
+      <div>
+        <span className="importantTask">{todo.important}</span>
+        <span>{todo.text}</span>
+      </div>
+    )
+
     return(
       <section className="centered">
         <List>
@@ -41,12 +48,12 @@ class TodosList extends Component {
             <ListItem
               key={todo.id}
               leftCheckbox={<Checkbox value={todo.id} onCheck={this.handleCheck.bind(this)}/>}
-              primaryText={`${todo.important} ${todo.text}`}
+              primaryText={primary(todo)}
               secondaryText={todo.deadline}
             />
           ))}
         </List>
-        <FlatButton label="Remove checked tasks" secondary={true} onTouchTap={this.handleClick.bind(this)} />
+        <FlatButton label="Remove checked tasks" primary={true} onTouchTap={this.handleClick.bind(this)} />
       </section>
     )
   }

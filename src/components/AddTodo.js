@@ -28,7 +28,7 @@ class AddTodo extends Component {
   };
 
   handleCheck() {
-    const status = this.state.important ? '' : "!!!";
+    const status = this.state.important ? '' : '!!! ';
     this.setState({important: status});
   }
 
