@@ -12,6 +12,9 @@ class TodosList extends Component {
     this.state = {
       checked: []
     };
+
+    this.handleCheck = this.handleCheck.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleCheck(event) {
@@ -47,13 +50,13 @@ class TodosList extends Component {
           {this.props.todos.map(todo => (
             <ListItem
               key={todo.id}
-              leftCheckbox={<Checkbox value={todo.id} onCheck={this.handleCheck.bind(this)}/>}
+              leftCheckbox={<Checkbox value={todo.id} onCheck={this.handleCheck}/>}
               primaryText={primary(todo)}
               secondaryText={todo.deadline}
             />
           ))}
         </List>
-        <FlatButton label="Remove checked tasks" primary={true} onTouchTap={this.handleClick.bind(this)} />
+        <FlatButton label="Remove checked tasks" primary={true} onTouchTap={this.handleClick} />
       </section>
     )
   }

@@ -13,6 +13,9 @@ class AddTodo extends Component {
       deadline: '',
       important: '',
     };
+
+    this.handleCheck = this.handleCheck.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange = event => {
@@ -28,7 +31,7 @@ class AddTodo extends Component {
   };
 
   handleCheck() {
-    const status = this.state.important ? '' : '!!! ';
+    const status = this.state.important ? '' : '! ';
     this.setState({important: status});
   }
 
@@ -58,8 +61,8 @@ class AddTodo extends Component {
           hintText="When it should be finished?"
           floatingLabelText="Deadline"
           /><br />
-        <Checkbox label="This is important task" checked={this.state.important ? true : false} onCheck={this.handleCheck.bind(this)} />
-        <FlatButton label="Add new task" primary={true} onTouchTap={this.handleSubmit.bind(this)} />
+        <Checkbox label="This is important task" checked={this.state.important ? true : false} onCheck={this.handleCheck} />
+        <FlatButton label="Add new task" primary={true} onTouchTap={this.handleSubmit} />
       </form>
     )
   }

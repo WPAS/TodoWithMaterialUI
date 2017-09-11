@@ -23,10 +23,11 @@ class Main extends Component {
   }
 
   handleAdd(todo) {
+    const currentTodos = this.state.todos;
     this.setState(
       {
         todos: [
-          ...this.state.todos,
+          ...currentTodos,
           {
             id: Date.now(),
             text: todo.text,
