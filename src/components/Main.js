@@ -24,11 +24,10 @@ class Main extends Component {
   }
 
   handleAdd(todo) {
-    const currentTodos = this.state.todos;
-    this.setState(
-      {
+    this.setState((prevState) => {
+      return {
         todos: [
-          ...currentTodos,
+          ...prevState.todos,
           {
             id: Date.now(),
             text: todo.text,
@@ -37,17 +36,19 @@ class Main extends Component {
           }
         ]
       }
-    );
+    });
   }
 
   handleDelete(array) {
-    let newState = this.state.todos;
-    array.forEach(number => {
-      newState = newState.filter(todo => {
-        return todo.id !== number;
+    this.setState((prevState) => {
+      let newState = prevState.todos;
+      array.forEach(number => {
+        newState = newState.filter(todo => {
+          return todo.id !== number;
+        });
       });
+    return { todos: newState };
     });
-    this.setState({ todos:newState });
   }
 
   componentDidUpdate() {
