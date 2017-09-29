@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodosList from './TodosList';
 import AddTodo from './AddTodo';
+import Header from './Header';
 
 class Main extends Component {
   constructor(props) {
@@ -17,16 +18,17 @@ class Main extends Component {
     if (localStorage.todo && localStorage.todo.length > 2) {
       savedTodos = JSON.parse(localStorage.getItem('todo'));
     } else {
-      savedTodos = [{id: 1, text: "Add first task using the form below", deadline: "And write when it should be finished", important: ""}]
+      savedTodos = [{id: 1, text: "Add first task using the form below", deadline: "", important: ""}]
     }
     this.setState({todos:savedTodos});
   }
 
   handleAdd(todo) {
-    this.setState((prevState) => {
-      return {
+    const currentTodos = this.state.todos;
+    this.setState(
+      {
         todos: [
-          ...prevState.todos,
+          ...currentTodos,
           {
             id: Date.now(),
             text: todo.text,
@@ -35,20 +37,17 @@ class Main extends Component {
           }
         ]
       }
-    });
+    );
   }
 
   handleDelete(array) {
-    this.setState((prevState) => {
-      let newState = prevState.todos;
-      array.forEach(number => {
-        newState = newState.filter(todo => {
-          return todo.id !== number;
-        });
+    let newState = this.state.todos;
+    array.forEach(number => {
+      newState = newState.filter(todo => {
+        return todo.id !== number;
       });
-
-      return { todos: newState };
     });
+    this.setState({ todos:newState });
   }
 
   componentDidUpdate() {
@@ -58,6 +57,7 @@ class Main extends Component {
   render() {
     return (
       <main>
+        <Header />
         <TodosList todos={this.state.todos} handleDelete={this.handleDelete.bind(this)} />
         <AddTodo handleAdd={this.handleAdd.bind(this)}/>
       </main>

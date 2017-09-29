@@ -10,7 +10,7 @@ import Main from './components/Main';
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>        
         <Main />
       </MuiThemeProvider>
     );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 
 class AddTodo extends Component {
@@ -45,6 +45,10 @@ class AddTodo extends Component {
   }
 
   render() {
+    const style = {
+      'marginTop': '2rem'
+    }
+
     return(
       <form className="centered">
         <TextField
@@ -62,7 +66,7 @@ class AddTodo extends Component {
           floatingLabelText="Deadline"
           /><br />
         <Checkbox label="This is important task" checked={this.state.important ? true : false} onCheck={this.handleCheck} />
-        <FlatButton label="Add new task" primary={true} onTouchTap={this.handleSubmit} />
+        <RaisedButton style={style} label="Add new task" primary={true} onTouchTap={this.handleSubmit} />
       </form>
     )
   }

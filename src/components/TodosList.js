@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import {List, ListItem} from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class TodosList extends Component {
 
@@ -56,7 +56,7 @@ class TodosList extends Component {
             />
           ))}
         </List>
-        <FlatButton label="Remove checked tasks" primary={true} onTouchTap={this.handleClick} />
+        <RaisedButton label="Remove checked" primary={true} onTouchTap={this.handleClick} />
       </section>
     )
   }
