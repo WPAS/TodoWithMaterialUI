@@ -20,7 +20,10 @@ class TodosList extends Component {
   handleCheck(event) {
     const newId = Number(event.target.value);
     const toDelete = this.state.checked;
-    if(toDelete.find((id) => newId === id)) {
+
+    const isChecked = toDelete.find(id => newId === id);
+    
+    if(isChecked) {
       const newState = toDelete.filter((id) => id !== newId);
       this.setState({
         checked: newState,
@@ -29,7 +32,7 @@ class TodosList extends Component {
       this.setState({
         checked: [...toDelete, newId]
       });
-    }
+    }    
   }
 
   handleClick() {

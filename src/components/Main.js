@@ -41,13 +41,10 @@ class Main extends Component {
 
   handleDelete(array) {
     this.setState((prevState) => {
-      let newState = prevState.todos;
-      array.forEach(number => {
-        newState = newState.filter(todo => {
-          return todo.id !== number;
-        });
-      });
-    return { todos: newState };
+      let newState = prevState.todos.filter((todo) => {
+        return !array.includes(todo.id);
+      })
+      return { todos: newState };
     });
   }
 
